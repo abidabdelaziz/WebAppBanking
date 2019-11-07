@@ -22,14 +22,14 @@ namespace Models.Repositories
         }
         public async Task<Customer> Get(int? id)
         {
-            var customer = await _context.Customers
+            var customer = await _context.Customer
                .FirstOrDefaultAsync(m => m.Id == id);
 
             return customer;
         }
         public async Task<List<Customer>> Get()
         {
-            var customers = await _context.Customers.ToListAsync();
+            var customers = await _context.Customer.ToListAsync();
             return customers;
         }
         public async Task<bool> Create(Customer customer)
@@ -50,7 +50,7 @@ namespace Models.Repositories
         public async Task<bool> Delete(int id)
         {
             var customer = await this.Get((int?)id);
-            _context.Customers.Remove(customer);
+            _context.Customer.Remove(customer);
             await _context.SaveChangesAsync();
 
             return true;
@@ -58,7 +58,7 @@ namespace Models.Repositories
 
         public bool CustomerExists(int id)
         {
-            return _context.Customers.Any(e => e.Id == id);
+            return _context.Customer.Any(e => e.Id == id);
         }
 
 

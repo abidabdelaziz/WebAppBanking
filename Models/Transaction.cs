@@ -10,6 +10,8 @@ namespace Models
 
         public int toAccountId {get; set;}
 
+        public int Id { get; set; }
+
         public string toAccType { get; set; }
 
         public int fromAccountId { get; set; }

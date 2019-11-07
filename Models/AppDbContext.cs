@@ -23,9 +23,11 @@ namespace Models
                 optionsBuilder.UseSqlServer(@"data source=.\SQLEXPRESS;initial catalog=MyDb;integrated security=True;MultipleActiveResultSets=True;");
             }
         }
+
+        //DB sets map to tables in SQL
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<Account> Orders { get; set; }
-        public Customer CurrentCustomer { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet <Customer> Customer { get; set; }
 
 
     }
