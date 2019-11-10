@@ -9,21 +9,22 @@ namespace Models
     public class Account
     {
         [Required]
-        public int Id { get; set; }
+        [Display(Name ="Account ID")]
+        public string Id { get; set; }
+
+        public string CustomerId { get; set; } 
 
         [Required]
-        public int CustomerId { get; set; }
-
-        [Required]
+        [Display(Name = "Date")]
         public DateTime OpenDate { get; set; }
 
         [Required]
         public int Sum { get; set; }
 
         [Required]
+        [Display(Name = "Account Type")]
         public string accType { get; set; }
 
-        public virtual Customer Customer { get; set; }
 
     }
 }

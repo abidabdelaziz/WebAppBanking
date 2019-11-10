@@ -12,6 +12,5 @@ namespace Models.Repositories
         Task<bool> Create(Account account);
         Task<bool> Delete(int id);
         bool AccountExists(int id);
-
     }
 }

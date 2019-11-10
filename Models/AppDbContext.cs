@@ -10,6 +10,10 @@ namespace Models
     public class AppDbContext : DbContext
     {
 
+        public AppDbContext()
+        {
+
+        }
         public AppDbContext(DbContextOptions<AppDbContext> context)
             : base(context)
         {
@@ -20,7 +24,7 @@ namespace Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"data source=.\SQLEXPRESS;initial catalog=MyDb;integrated security=True;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer("data source =.\\SQLEXPRESS; initial catalog = WebApplication; Trusted_Connection = True;");
             }
         }
 

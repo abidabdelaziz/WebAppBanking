@@ -24,7 +24,7 @@ namespace Models.Repositories
             custAccounts.Customer = customer;
 
             var orders = await _context.Accounts
-                .Where(o => o.Id == id)
+                //.Where(o => o.Id == id)
                 .ToListAsync<Account>();
 
             custAccounts.CustAccounts = orders;

@@ -22,8 +22,8 @@ namespace Models.Repositories
         }
         public async Task<Account> Get(int? id)
         {
-            var account = await _context.Accounts
-               .FirstOrDefaultAsync(m => m.Id == id);
+            var account = await _context.Accounts.FirstOrDefaultAsync();
+               //.FirstOrDefaultAsync(m => m.Id == id);
 
             return account;
         }
@@ -34,6 +34,7 @@ namespace Models.Repositories
         }
         public async Task<bool> Create(Account account)
         {
+            //Logic To Create Specific Account and add that to dB
             _context.Add(account);
             await _context.SaveChangesAsync();
 
@@ -51,7 +52,7 @@ namespace Models.Repositories
 
         public bool AccountExists(int id)
         {
-            return _context.Accounts.Any(e => e.Id == id);
+            return _context.Accounts.Any(e => e.Id == "qq");
         }
 
 

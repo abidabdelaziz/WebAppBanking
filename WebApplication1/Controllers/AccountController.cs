@@ -46,7 +46,11 @@ namespace WebApplication1.Controllers
         // GET: Account/Create
         public IActionResult Create()
         {
-            return View();
+            // Look into why this wasnt working
+            //List<string> AccTypes = new List<string>() { "Checking", "Banking", "Loan", "CD" };
+            //ViewBag.AccountTypes = new SelectList(AccTypes, "ID", "FullName");
+
+            return View(new Account());
         }
 
         // POST: Account/Create
@@ -54,11 +58,14 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Firstname,Lastname")] Account account)
+        public async Task<IActionResult> Create( Account account)
         {
+
+           
             if (ModelState.IsValid)
             {
                 await _repo.Create(account);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(account);
