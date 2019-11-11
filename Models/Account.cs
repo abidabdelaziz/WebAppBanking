@@ -12,6 +12,8 @@ namespace Models
         [Display(Name ="Account ID")]
         public string Id { get; set; }
 
+        public int interest { get; set; }
+
         public string CustomerId { get; set; } 
 
         [Required]

@@ -8,7 +8,6 @@ namespace Models
 {
     class Business : Account
     {
-        public int Interest { get; set; } = 3;
         public int OverDraft { get; set; } = 500;
     }
 }

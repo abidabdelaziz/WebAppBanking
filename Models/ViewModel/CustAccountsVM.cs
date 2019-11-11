@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Models.ViewModel
 {
-    class CustAccountsVM
+    public class CustAccountsVM
     {
-        public Customer Customer { get; set; }
+        public Transaction CustTransaction { get; set; }
+        public Account ActiveAccount { get; set; }
         public List<Account> CustAccounts { get; set; }
     }
 }

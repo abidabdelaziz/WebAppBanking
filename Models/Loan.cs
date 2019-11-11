@@ -8,6 +8,6 @@ namespace Models
 {
     class Loan : Account
     {
-        public int Interest { get; set; } = 4;
+     
     }
 }

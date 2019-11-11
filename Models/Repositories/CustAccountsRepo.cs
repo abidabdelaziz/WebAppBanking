@@ -21,7 +21,7 @@ namespace Models.Repositories
         {
             var customer = await _context.Customer.FirstOrDefaultAsync(m => m.Id == id);
             var custAccounts = new CustAccountsVM();
-            custAccounts.Customer = customer;
+         
 
             var orders = await _context.Accounts
                 //.Where(o => o.Id == id)

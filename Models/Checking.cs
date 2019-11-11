@@ -8,6 +8,5 @@ namespace Models
 {
     class Checking : Account
     { 
-        public int Interest { get; set; } = 2;
     }
 }

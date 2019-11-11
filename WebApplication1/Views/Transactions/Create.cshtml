@@ -1,0 +1,68 @@
+﻿@model Models.Transaction
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Transaction</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <input asp-for="CustomerId" class="form-control" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="toAccountId" class="control-label"></label>
+                <input asp-for="toAccountId" class="form-control" />
+                <span asp-validation-for="toAccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="toAccType" class="control-label"></label>
+                <input asp-for="toAccType" class="form-control" />
+                <span asp-validation-for="toAccType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fromAccountId" class="control-label"></label>
+                <input asp-for="fromAccountId" class="form-control" />
+                <span asp-validation-for="fromAccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fromAccType" class="control-label"></label>
+                <input asp-for="fromAccType" class="form-control" />
+                <span asp-validation-for="fromAccType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tranSum" class="control-label"></label>
+                <input asp-for="tranSum" class="form-control" />
+                <span asp-validation-for="tranSum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="transType" class="control-label"></label>
+                <input asp-for="transType" class="form-control" />
+                <span asp-validation-for="transType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="timeStamp" class="control-label"></label>
+                <input asp-for="timeStamp" class="form-control" />
+                <span asp-validation-for="timeStamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

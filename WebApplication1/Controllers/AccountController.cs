@@ -6,7 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using Models.ViewModel;
 using Models.Repositories;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace WebApplication1.Controllers
 {
@@ -23,24 +26,27 @@ namespace WebApplication1.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            return View(await _repo.Get());
+            return View(await _repo.Get(User.Identity.Name));
         }
 
         // GET: Account/Details/id
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Actions(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var account = await _repo.Get(id);
-            if (account == null)
-            {
-                return NotFound();
-            }
+            var custAccounts = new CustAccountsVM();
 
-            return View(account);
+
+            var account = await _repo.Get(id);
+            var accounts = await _repo.Get(User.Identity.Name);
+
+            custAccounts.ActiveAccount = account;
+            custAccounts.CustAccounts = accounts;
+
+            return View(custAccounts);
         }
 
         // GET: Account/Create
@@ -64,6 +70,7 @@ namespace WebApplication1.Controllers
            
             if (ModelState.IsValid)
             {
+                account.CustomerId = User.Identity.Name;
                 await _repo.Create(account);
 
                 return RedirectToAction(nameof(Index));
@@ -102,6 +109,7 @@ namespace WebApplication1.Controllers
         {
             return _repo.AccountExists(id);
         }
+
 
     }
 }

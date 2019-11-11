@@ -22,14 +22,17 @@ namespace Models.Repositories
         }
         public async Task<Account> Get(int? id)
         {
-            var account = await _context.Accounts.FirstOrDefaultAsync();
-               //.FirstOrDefaultAsync(m => m.Id == id);
+            //FirstOrDefaultAsync();
+            string ID = id.ToString();
+            var account = await _context.Accounts.
+               FirstOrDefaultAsync(m => m.Id ==  ID);
 
             return account;
         }
-        public async Task<List<Account>> Get()
+        public async Task<List<Account>> Get(string name)
         {
-            var accounts = await _context.Accounts.ToListAsync();
+            var accounts = await _context.Accounts.Where(o => o.CustomerId == name)
+                .ToListAsync<Account>();
             return accounts;
         }
         public async Task<bool> Create(Account account)

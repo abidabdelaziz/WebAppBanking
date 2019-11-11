@@ -1,0 +1,201 @@
+﻿@model Models.ViewModel.CustAccountsVM;
+
+@{
+    ViewData["Title"] = "Actions";
+
+}
+
+<h1>Actions</h1>
+
+
+<div class="row">
+    <div class="col-4">
+
+        <div class="row">
+            <div class="col">
+
+
+                <p>
+                    Active Account : @Html.DisplayFor(model => model.ActiveAccount.Id)
+
+                </p>
+                <p>
+                    Account Type : @Html.DisplayFor(model => model.ActiveAccount.accType)
+
+                </p>
+                <p>
+                    Account Total : @Html.DisplayFor(model => model.ActiveAccount.Sum)
+
+                </p>
+                <p>
+                    Account Open Date : @Html.DisplayFor(model => model.ActiveAccount.OpenDate)
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-8">
+
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CustAccounts[0].Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CustAccounts[0].OpenDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CustAccounts[0].Sum)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CustAccounts[0].accType)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CustAccounts)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OpenDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sum)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.accType)
+                            </td>
+                            <td>
+                                <a asp-action="Actions" asp-route-id="@item.Id">Account Actions</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+@if (Model.ActiveAccount.accType == "Checking" || Model.ActiveAccount.accType == "Business")
+{
+    <h3>@Model.ActiveAccount.accType Account Operations</h3>
+    <hr>
+    @Html.Partial("_CBTransPView", Model.CustTransaction);
+
+}
+
+
+@if (Model.ActiveAccount.accType == "CD")
+{
+    <h3>@Model.ActiveAccount.accType Account Operations</h3>
+    <hr>
+    <div class="row">
+
+        <form asp-action="ApplyTransaction">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="CustTransaction.tranSum" class="control-label"></label>
+                    <input asp-for="CustTransaction.tranSum" class="form-control" />
+                    <span asp-validation-for="CustTransaction.tranSum" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CustTransaction.fromAccountId" class="control-label"></label>
+                    <input asp-for="CustTransaction.fromAccountId" class="form-control" />
+                    <span asp-validation-for="CustTransaction.fromAccountId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CustTransaction.fromAccType" class="control-label"></label>
+                    <input asp-for="CustTransaction.fromAccType" class="form-control" />
+                    <span asp-validation-for="CustTransaction.fromAccType" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="CustTransaction.transType" class="control-label"></label>
+                    <select asp-for="CustTransaction.transType" class="form-control">
+                        <option value="">Select an Action </option>
+                        <option value="Withdraw">Withdraw</option>
+
+                    </select>
+                    <span asp-validation-for="CustTransaction.transType" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Apply" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+
+}
+
+
+
+@if (Model.ActiveAccount.accType == "Loan")
+{
+    <h3>@Model.ActiveAccount.accType Account Operations</h3>
+    <hr>
+    <div class="row">
+
+        <form asp-action="ApplyTransaction">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="CustTransaction.tranSum" class="control-label"></label>
+                    <input asp-for="CustTransaction.tranSum" class="form-control" />
+                    <span asp-validation-for="CustTransaction.tranSum" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CustTransaction.fromAccountId" class="control-label"></label>
+                    <input asp-for="CustTransaction.fromAccountId" class="form-control" />
+                    <span asp-validation-for="CustTransaction.fromAccountId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CustTransaction.fromAccType" class="control-label"></label>
+                    <input asp-for="CustTransaction.fromAccType" class="form-control" />
+                    <span asp-validation-for="CustTransaction.fromAccType" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="CustTransaction.transType" class="control-label"></label>
+                    <select asp-for="CustTransaction.transType" class="form-control">
+                        <option value="Deposit">Deposit</option>
+                        <option value="Transfer">Transfer</option>
+
+                    </select>
+                    <span asp-validation-for="CustTransaction.transType" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Apply" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+
+}
+
+

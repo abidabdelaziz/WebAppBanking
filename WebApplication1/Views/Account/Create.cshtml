@@ -6,9 +6,10 @@
 
 @{
     ViewData["Title"] = "Create";
-    var userId = UserManager.GetUserId(User);
+   // var userId = UserManager.GetUserId(Usier);
 
-    Model.CustomerId = userId;
+    var id = @User.Identity.Name;
+    Model.CustomerId =id;
 }
 <h1>@ViewData["Title"]</h1>
 
@@ -38,10 +39,10 @@
                 <label asp-for="accType" class="control-label"></label>
                 <select asp-for="accType" class="form-control">
                     <option value="">Select an Account Type</option>
-                    <option value="1">Checking</option>
-                    <option value="2">Business</option>
-                    <option value="3">Loan</option>
-                    <option value="4">CD</option>
+                    <option value="Checking">Checking</option>
+                    <option value="Business">Business</option>
+                    <option value="Loan">Loan</option>
+                    <option value="CD">CD</option>
                 </select>
                 <span asp-validation-for="accType" class="text-danger"></span>
             </div>

@@ -11,6 +11,5 @@ namespace Models
         [DataType(DataType.Date)]
         [Display(Name = "Maturity Date")]
         public DateTime Maturity { get; set; }
-        public int Interest { get; set; } = 5;
     }
 }
